@@ -33,7 +33,7 @@ print(sum(prime_10))
 # Sieve is faster
 def prime_sieve(n):
     primes = set(range(2, n+1))
-    for i in range(2, (n+1) // 2):
+    for i in range(2, (n+1+1) // 2):
         if i in primes:
             m = 2
             while i*m <= n:
@@ -42,5 +42,6 @@ def prime_sieve(n):
     return primes
 
 print(sum(prime_sieve(10)))
+print(sum(prime_sieve(2 * 1000)))
 print(sum(prime_sieve(2 * 1000 * 1000)))
 
