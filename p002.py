@@ -10,17 +10,21 @@ def fib(n):
         memo[n] = fib(n-1) + fib(n-2) 
     return memo[n]
     
-def main(max):
+def efn(max):
     result = 0
-    i = 1
-    fn = fib(i)
+    n = 1
+    fn = fib(n)
     while fn <= max:
         if fn % 2 == 0:
             result += fn
-        i += 1
-        fn = fib(i)
+        n += 1
+        fn = fib(n)
     return result
 
-print(main(4 * 1000 * 1000))
+#
+def main():
+    return efn(4 * 1000 * 1000)
 
+if __name__ == '__main__':
+    print(main())
 
