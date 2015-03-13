@@ -21,7 +21,7 @@ def prime_gf():
                 break
 prime_f = prime_gf()
 
-def main(n):
+def lpf(n):
     max = 1
     for i in prime_f:
         if i <= n:
@@ -32,5 +32,19 @@ def main(n):
             break
     return max
 
-print(main(13195))
-print(main(600851475143))
+#
+def test():
+    if lpf(13195) == 29:
+        print('Pass')
+    else:
+        print('Fail')
+    
+def main():
+    print(lpf(600851475143))
+    
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) >= 2 and sys.argv[1] == 'test':
+        test()
+    else:
+        main()

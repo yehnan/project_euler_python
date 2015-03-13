@@ -48,7 +48,7 @@ def m35_e(n):
     return reduce(add, filter(is_m35, range(1, n)), 0)
 
 #
-def main():
+def test():
     n = 1000
     a = m35_a(n)
     b = m35_b(n)
@@ -56,10 +56,17 @@ def main():
     d = m35_d(n)
     e = m35_e(n)
     if a == b == c == d == e:
-        return a
+        print('Pass')
     else:
-        return 'Error'
+        print('Fail')
         
+def main():
+    print(m35_a(1000))
+            
 if __name__ == '__main__':
-    print(main())
+    import sys
+    if len(sys.argv) >= 2 and sys.argv[1] == 'test':
+        test()
+    else:
+        main()
 
