@@ -35,16 +35,17 @@ def lpf(n):
 #
 def test():
     if lpf(13195) == 29:
-        print('Pass')
+        return 'Pass'
     else:
-        print('Fail')
+        return 'Fail'
     
 def main():
-    print(lpf(600851475143))
+    return lpf(600851475143)
     
 if __name__ == '__main__':
     import sys
     if len(sys.argv) >= 2 and sys.argv[1] == 'test':
-        test()
+        print(test())
     else:
-        main()
+        print(main())
+

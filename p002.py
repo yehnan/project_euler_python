@@ -23,15 +23,15 @@ def efn(max):
 
 #
 def test():
-    print('No test')
+    return 'No test'
     
 def main():
-    print(efn(4 * 1000 * 1000))
+    return efn(4 * 1000 * 1000)
 
 if __name__ == '__main__':
     import sys
     if len(sys.argv) >= 2 and sys.argv[1] == 'test':
-        test()
+        print(test())
     else:
-        main()
+        print(main())
 

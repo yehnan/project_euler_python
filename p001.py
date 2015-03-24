@@ -3,7 +3,7 @@
 # Problem 1: Multiples of 3 and 5
 # https://projecteuler.net/problem=1
 
-# 
+#
 def m35_a(n):
     result = 0
     for i in range(1, n):
@@ -49,6 +49,13 @@ def m35_e(n):
 
 #
 def test():
+    m35all = [m35_a, m35_b, m35_c, m35_d, m35_e]
+    n = 10
+    for f in m35all:
+        if f(n) != 23:
+            return 'Fail'
+            break
+    #
     n = 1000
     a = m35_a(n)
     b = m35_b(n)
@@ -56,17 +63,17 @@ def test():
     d = m35_d(n)
     e = m35_e(n)
     if a == b == c == d == e:
-        print('Pass')
+        return 'Pass'
     else:
-        print('Fail')
+        return 'Fail'
         
 def main():
-    print(m35_a(1000))
+    return m35_a(1000)
             
 if __name__ == '__main__':
     import sys
     if len(sys.argv) >= 2 and sys.argv[1] == 'test':
-        test()
+        print(test())
     else:
-        main()
+        print(main())
 
