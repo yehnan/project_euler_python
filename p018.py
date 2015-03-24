@@ -20,18 +20,18 @@ def max_path_sum(tri, row, col):
                   max_path_sum(tri, row+1, col+1))
         return tri[row][col] + sub
         
-def mpsi(filename, row, col):
+def mpsi(filename):
     tri = get_triangle(filename)
-    return max_path_sum(tri, row, col)
+    return max_path_sum(tri, 0, 0)
 #
 def test():
-    if mpsi('p018_data_test.txt', 0, 0) == 23:
+    if mpsi('p018_data_test.txt') == 23:
         return 'Pass'
     else:
         return 'Fail'
     
 def main():
-    return mpsi('p018_data.txt', 0, 0)
+    return mpsi('p018_data.txt')
     
 if __name__ == '__main__':
     import sys

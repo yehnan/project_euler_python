@@ -12,12 +12,15 @@ def get_triangle(filename):
             triangle.append([int(n) for n in line.split()])
     return triangle
 
-def mpsii(filename):
-    tri = get_triangle(filename)
+def max_path_sum(tri, row, col):
     for r in range(len(tri)-1 -1, -1, -1):
         for c in range(len(tri[r])):
             tri[r][c] += max(tri[r+1][c], tri[r+1][c+1])
-    return tri[0][0]
+    return tri[row][col]
+    
+def mpsii(filename):
+    tri = get_triangle(filename)
+    return max_path_sum(tri, 0, 0)
 #
 def test():
     if mpsii('p067_data_test.txt') == 23:
