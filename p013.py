@@ -5,9 +5,22 @@
 
 from io import open
 
-with open('p013_numbers.txt', 'r', encoding='ascii') as fin:
-    total = sum(int(line) for line in fin)
-    print(str(total)[:10])
-        
+def ls(filename):
+    with open(filename, 'r', encoding='ascii') as fin:
+        total = sum(int(line) for line in fin)
+        return str(total)[:10]
 
+#
+def test():
+    return 'No test'
+    
+def main():
+    return ls('p013_data.txt')
+    
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) >= 2 and sys.argv[1] == 'test':
+        print(test())
+    else:
+        print(main())
 

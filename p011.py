@@ -6,11 +6,11 @@
 from io import open
 
 grid = []
-with open('p011_grid.txt', 'r', encoding='ascii') as fin:
+with open('p011_data.txt', 'r', encoding='ascii') as fin:
     for line in fin:
         grid.append(list(map(int, line.split())))
 
-# print(grid)
+#
 def product(li):
     result = 1
     for n in li:
@@ -20,8 +20,9 @@ def product(li):
 def product_max(li, count):
     max = 0
     for i in range(0, len(li)-count + 1):
-        m = product(li[i:i+4])
-        max = m if m > max else max
+        m = product(li[i:i+count])
+        if m > max:
+            max = m
     return max
 
 def diag(grid, row, col, slant):
@@ -39,16 +40,35 @@ def find_max(grid, count):
     max = 0
     for row in grid:
         m = product_max(row, count)
-        max = m if m > max else max
+        if m > max:
+            max = m
     for col in range(len(grid[0])):
         m = product_max(diag(grid, 0, col, 1), count)
-        max = m if m > max else max
+        if m > max:
+            max = m
     for col in range(len(grid[0])):
         m = product_max(diag(grid, 0, col, -1), count)
-        max = m if m > max else max
+        if m > max:
+            max = m
     return max
 
-max_ = find_max(grid, 4)
-grid_rotated = list(zip(*grid))
-max_rotated = find_max(grid_rotated, 4)
-print(max(max_, max_rotated))
+def lpiad(grid, count):
+    m = find_max(grid, count)
+    grid_rotated = list(zip(*grid))
+    mr = find_max(grid_rotated, count)
+    return max(m, mr)
+
+#
+def test():
+     return 'No test'
+    
+def main():
+    return lpiad(grid, 4)
+    
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) >= 2 and sys.argv[1] == 'test':
+        print(test())
+    else:
+        print(main())
+
