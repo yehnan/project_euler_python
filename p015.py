@@ -8,9 +8,24 @@ def factorial(n):
     for i in range(2, n+1):
         result *= i
     return result
-def main(row, col):
+    
+def lp(row, col):
     return factorial(row+col) // factorial(row) // factorial(col)
 
-print(main(2, 2))
-print(main(20, 20))
+#
+def test():
+    if lp(2, 2) == 6:
+        return 'Pass'
+    else:
+        return 'Fail'
+    
+def main():
+    return lp(20, 20)
+    
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) >= 2 and sys.argv[1] == 'test':
+        print(test())
+    else:
+        print(main())
 
