@@ -11,20 +11,25 @@ def alphabetical_value(s):
         v += ord(c) - ord('A') + 1
     return v
 
-with open('p022_names.txt', 'r', encoding='ascii') as fin:
-    names = sorted(eval(''.join(('[', fin.read(), ']'))))
-    scores = 0
-    for i, name in enumerate(names):
-        scores += alphabetical_value(name) * (i + 1)
-    print(scores)
+def ns(filename):
+    with open(filename, 'r', encoding='ascii') as fin:
+        names = sorted(eval(''.join(('[', fin.read(), ']'))))
+        scores = 0
+        for i, name in enumerate(names):
+            scores += alphabetical_value(name) * (i + 1)
+        return scores
 
-
-
-
-
-
-
-
-
-
+#
+def test():
+    return 'No test'
+    
+def main():
+    return ns('p022_data.txt')
+    
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) >= 2 and sys.argv[1] == 'test':
+        print(test())
+    else:
+        print(main())
 

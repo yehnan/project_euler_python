@@ -1,24 +1,25 @@
 
 
+# Problem 21: Amicable numbers
+# https://projecteuler.net/problem=21
+
+from math import sqrt
+
+# proper divisors. includes 1, excludes n itself
 def divisors(n):
     result = [1]
-    upper = n // 2
-    i = 2
-    while i < upper:
+    result_2 = []
+    for i in range(2, int(sqrt(n))+1):
         if n % i == 0:
             result.append(i)
-            upper = n // i
-            result.append(upper)
-        i += 1
+            x = n // i
+            if x != i:
+                result_2.insert(0, n//i)
+    result.extend(result_2)
     return result
 
 def sum_divisors(n):
     return sum(divisors(n))
-
-print(divisors(220))
-print(sum_divisors(220))
-print(divisors(284))
-print(sum_divisors(284))
 
 def amicable(a):
     b = da = sum_divisors(a)
@@ -28,14 +29,30 @@ def amicable(a):
     else:
         None
 
-print(amicable(220))
-print(amicable(284))
+def an(m):
+    set_amicable = set()
+    for a in range(1, m):
+        if a not in set_amicable:
+            b = amicable(a)
+            if b:
+                set_amicable.add(a)
+                set_amicable.add(b)
+    return sum(set_amicable)
 
-set_amicable = set()
-for n in range(1, 10000):
-    b = amicable(n)
-    if b:
-        set_amicable.add(n)
-        set_amicable.add(b)
+#
+def test():
+    if sum_divisors(220) == 284 and sum_divisors(284) == 220:
+        return 'Pass'
+    else:
+        return 'Fail'
+    
+def main():
+    return an(10000)
+    
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) >= 2 and sys.argv[1] == 'test':
+        print(test())
+    else:
+        print(main())
 
-print(sum(set_amicable))
