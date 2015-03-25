@@ -28,25 +28,42 @@ def is_it(n, d):
            d // gcd(n, d) == y // gcd(x, y)):
            return True
     return False
+    
 def is_dd(num): # double digit, like 11, 22...
     return (num // 10) == (num % 10)
+    
 def is_m10(num): # mutiple of 10, like 10, 20...
     return (num % 10) == 0
 
-def main():
+def dcf():
     prod_n = 1
     prod_d = 1
     count = 0
     for d in range(10, 99+1):  # two digits
         for n in range(10, d): # less than 1
             if (not is_dd(n) and not is_dd(d) and 
-               not is_m10(n) and not is_m10(d) and
-               is_it(n, d)):
+                not is_m10(n) and not is_m10(d) and
+                is_it(n, d)):
                 prod_n *= n
                 prod_d *= d
                 count += 1
     gg = gcd(prod_n, prod_d)
-    # print(prod_n//gg, prod_d//gg, count)
-    return prod_d//gg
-print(main())
+    return prod_n//gg, prod_d//gg, count
+
+#
+def test():
+    if dcf()[2] == 4:
+        return 'Pass'
+    else:
+        return 'Fail'
+    
+def main():
+    return dcf()[1]
+
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) >= 2 and sys.argv[1] == 'test':
+        print(test())
+    else:
+        print(main())
 

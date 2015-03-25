@@ -11,11 +11,11 @@ def is_pandigital(num):
     ins = sum(1 for d in ds if d in num)
     return ins == len(ds)
             
-def main():
+def pd():
     result = set()
     answers = set()
     for i in ds: # 1 4 4
-        for jli in perm(ds[0:int(i)] + ds[int(i)+1:], 4):
+        for jli in perm(ds[:int(i)] + ds[int(i)+1:], 4):
             j = ''.join(jli)
             k = str(int(i) * int(j))
             if len(k) == 4 and is_pandigital(i + j + k):
@@ -31,4 +31,20 @@ def main():
                 answers.add(int(k))
     return sum(answers)
 
-print(main())
+#
+def test():
+    if is_pandigital(str(39) + str(186) + str(7254)):
+        return 'Pass'
+    else:
+        return 'Fail'
+    
+def main():
+    return pd()
+
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) >= 2 and sys.argv[1] == 'test':
+        print(test())
+    else:
+        print(main())
+

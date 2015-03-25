@@ -3,12 +3,8 @@
 # Problem 34: Digit factorials
 # https://projecteuler.net/problem=34
 
-memo = {0: 1, 1: 1, 2: 2}
-def fact(n):
-    if n not in memo:
-        memo[n] = n * fact(n-1)
-    return memo[n]
-facts = [fact(i) for i in range(10)]
+from math import factorial
+facts = [factorial(i) for i in range(10)]
 
 def limit():   # 9999999 is way more than its fact-sum
     n = 2
@@ -16,8 +12,10 @@ def limit():   # 9999999 is way more than its fact-sum
         if 10**(n-1) > facts[9]*n:
             return n
         n += 1
+
 def check_1(n):
     return n == sum(facts[int(i)] for i in str(n))
+    
 def check_2(n):
     tmp = n
     total = 0
@@ -25,13 +23,28 @@ def check_2(n):
         total += facts[tmp % 10]
         tmp //= 10
     return total == n
-def main():
+    
+def df():
     result = 0
-    for n in xrange(10, facts[9]*(limit()-1)):
+    for n in range(10, facts[9] * (limit()-1)):
         if check_2(n):
             result += n
     return result
 
-# print(limit())
-print(main())
+#
+def test():
+    if 1:
+        return 'Pass'
+    else:
+        return 'Fail'
+    
+def main():
+    return df()
+
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) >= 2 and sys.argv[1] == 'test':
+        print(test())
+    else:
+        print(main())
 
