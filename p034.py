@@ -6,17 +6,14 @@
 from math import factorial
 facts = [factorial(i) for i in range(10)]
 
-def limit():   # 9999999 is way more than its fact-sum
+def limit(): # 9999999 is way more than its fact-sum
     n = 2
     while True:
         if 10**(n-1) > facts[9]*n:
             return n
         n += 1
 
-def check_1(n):
-    return n == sum(facts[int(i)] for i in str(n))
-    
-def check_2(n):
+def check(n):
     tmp = n
     total = 0
     while tmp > 0:
@@ -27,13 +24,13 @@ def check_2(n):
 def df():
     result = 0
     for n in range(10, facts[9] * (limit()-1)):
-        if check_2(n):
+        if check(n):
             result += n
     return result
 
 #
 def test():
-    if 1:
+    if check(145):
         return 'Pass'
     else:
         return 'Fail'
