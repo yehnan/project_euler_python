@@ -4,7 +4,7 @@
 # https://projecteuler.net/problem=26
 
 # apply Fermat's little theorem
-# http://blog.dreamshire.com/project-euler-26-solution/
+# see http://blog.dreamshire.com/project-euler-26-solution/
 
 def prime_sieve(n):
     primes = set(range(2, n+1))
@@ -16,15 +16,28 @@ def prime_sieve(n):
                 m += 1
     return primes
 
-
-def main(n):
-    primes = sorted(prime_sieve(n))
-    for p in reversed(primes):
+def rc(n):
+    for p in reversed(sorted(prime_sieve(n))):
         c = 1
         while pow(10, c, p) - 1 != 0:
             c += 1
         if p-1 == c:
             return p
-    
 
-print(main(1000))
+#
+def test():
+    if rc(10) == 7:
+        return 'Pass'
+    else:
+        return 'Fail'
+    
+def main():
+    return rc(1000)
+
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) >= 2 and sys.argv[1] == 'test':
+        print(test())
+    else:
+        print(main())
+

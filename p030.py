@@ -3,30 +3,40 @@
 # Problem 30: Digit fifth powers
 # https://projecteuler.net/problem=30
 
-# brute force
-
 def limit(power):
     w = 2
     while True:
         num_lower = 10 ** (w - 1)
         sop_upper = (9**power) * w
         if num_lower > sop_upper:
-            return w-1
+            return sop_upper
         w += 1
-
-print(limit(4))   # 5
-print(limit(5))
 
 def is_sop(n, power):
     sop = sum(int(c)**power for c in str(n))
     return n == sop
 
-def main(power):
+def dfp(power):
     result = 0
-    for n in range(10, 10**limit(power)):
+    for n in range(2, limit(power)+1):
         if is_sop(n, power):
             result += n
     return result
 
-print(main(4))
-print(main(5))
+#
+def test():
+    if dfp(4) == 19316:
+        return 'Pass'
+    else:
+        return 'Fail'
+    
+def main():
+    return dfp(5)
+
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) >= 2 and sys.argv[1] == 'test':
+        print(test())
+    else:
+        print(main())
+

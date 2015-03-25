@@ -9,14 +9,28 @@ def fib_m(n):
         memo[n] = fib_m(n-1) + fib_m(n-2) 
     return memo[n]
 
-def main(n):
+def ndfn(nd):
     i = 1
     while True:
         fn = fib_m(i)
-        if len(str(fn)) >= n:
+        if len(str(fn)) >= nd:
             return i
         i += 1
 
-print(main(3))
-print(main(1000))
+#
+def test():
+    if ndfn(3) == 12:
+        return 'Pass'
+    else:
+        return 'Fail'
+    
+def main():
+    return ndfn(1000)
+
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) >= 2 and sys.argv[1] == 'test':
+        print(test())
+    else:
+        print(main())
 

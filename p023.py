@@ -44,6 +44,7 @@ def nas():
         if not any((n-a in abn) for a in abn):
             result += n
     return result
+
 #
 def test():
     if is_perfect(28) and is_abundant(12) and sum_divisors(12) == 16:

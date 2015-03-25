@@ -3,8 +3,8 @@
 # Problem 27: Quadratic primes
 # https://projecteuler.net/problem=27
 
-def prime_sieve(n, initials=set(), m=2):
-    primes = set(range(m, n+1))
+def prime_sieve(n, initials=set(), nmax=2):
+    primes = set(range(nmax, n+1))
     if initials != set():
         primes |=  initials
 
@@ -15,8 +15,10 @@ def prime_sieve(n, initials=set(), m=2):
                 primes.discard(i*m)
                 m += 1
     return primes
+    
 n_max = 100
 primes = prime_sieve(n_max)
+
 def is_prime(n):
     global n_max
     global primes
@@ -36,16 +38,31 @@ def howmany(a, b):
             break
     return n
         
-def main():
-    prod = 0
-    n = 0
+def qp():
+    prod = None
+    cnt_max = 0
     for a in range(-1000, 1000+1):
         for b in range(-1000, 1000+1):
-            hm = howmany(a, b)
-            if hm > n:
-                n = hm
+            cnt = howmany(a, b)
+            if cnt > cnt_max:
+                cnt_max = cnt
                 prod = a * b
     return prod
-print(main())
 
+#
+def test():
+    if howmany(1, 41) == 40 and howmany(-79, 1601) == 80:
+        return 'Pass'
+    else:
+        return 'Fail'
+    
+def main():
+    return qp()
+
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) >= 2 and sys.argv[1] == 'test':
+        print(test())
+    else:
+        print(main())
 
