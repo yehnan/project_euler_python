@@ -21,7 +21,8 @@ def sub_gf(fa, fb):
         else:
             yield a
             a = next(fa)
-def main(n):
+            
+def tph(n):
     tn = gen_n(lambda i: i * (i+1) // 2)
     pn = gen_n(lambda i: i * (3*i - 1) // 2)
     hn = gen_n(lambda i: i * (2*i - 1))
@@ -33,6 +34,20 @@ def main(n):
         result = next(sub2)
     return result
     
-# print(main(1))
-# print(main(2))
-print(main(3))
+#
+def test():
+    if tph(1) == 1 and tph(2) == 40755:
+        return 'Pass'
+    else:
+        return 'Fail'
+
+def main():
+    return tph(3)
+
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) >= 2 and sys.argv[1] == 'test':
+        print(test())
+    else:
+        print(main())
+

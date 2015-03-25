@@ -7,11 +7,11 @@
 # P1 P2 P3 ... Pi ... Pj ... Pk ... Pn
 # Pk - Pj = Pi  in the set
 # Pk + Pj = Pn  in the set
-# Pn - Pk  in the set
+# Pn - Pk in the set
 # add) 2Pk = Pi + Pn,  Pn - 2Pk = Pi in the set
 # Pi = Pk - Pj  which is the answer
 
-def main():
+def pn():
     pn_set = set()
     n = 1
     while True:
@@ -21,5 +21,18 @@ def main():
                 return pn-2*pk
         pn_set.add(pn)
         n += 1
+    
+#
+def test():
+    return 'No test'
 
-print(main())
+def main():
+    return pn()
+
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) >= 2 and sys.argv[1] == 'test':
+        print(test())
+    else:
+        print(main())
+

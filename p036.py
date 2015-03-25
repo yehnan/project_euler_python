@@ -5,11 +5,11 @@
 
 def is_palindrome_10(n):
     s = str(n)
-    return s == ''.join(reversed(s))
+    return s == s[::-1]
     
 def is_palindrome_2(n):
     s = bin(n)[2:]
-    return s == ''.join(reversed(s))
+    return s == s[::-1]
     
 def is_palindrome(n):
     return is_palindrome_10(n) and is_palindrome_2(n)

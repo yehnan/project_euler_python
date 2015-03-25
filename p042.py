@@ -3,10 +3,9 @@
 # Problem 42: Coded triangle numbers
 # https://projecteuler.net/problem=42
 
-from io import open
-
 def tn(n):
     return n * (n+1) // 2
+    
 memo = [0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55]
 def is_tn(n):
     mn = len(memo)
@@ -25,15 +24,28 @@ def word_value(word):
         value += ord(c) - ord('A') + 1
     return value
 
-def main(filename):
+from io import open
+
+def ctn(filename):
     result = 0
-    with open('p042_words.txt', 'r', encoding='ascii') as fin:
+    with open(filename, 'r', encoding='ascii') as fin:
         words = eval(''.join(('[', fin.read(), ']')))
         for word in words:
             if is_tn(word_value(word)):
                 result += 1
     return result
 
-# print(word_value('SKY'))
-print(main('p042_words.txt'))
+#
+def test():
+    return 'No test'
+
+def main():
+    return ctn('p042_data.txt')
+
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) >= 2 and sys.argv[1] == 'test':
+        print(test())
+    else:
+        print(main())
 
