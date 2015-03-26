@@ -3,28 +3,29 @@
 # Problem 48: Self powers
 # https://projecteuler.net/problem=48
 
-# 
-def sp(n):
+def sp(n, d=None):
     result = 0
     for i in range(1, n+1):
         result += i ** i
+    result = str(result)
+    if d is not None:
+        result = result[-d:]
     return result
 
-print(sp(10))
-print(len(str(sp(10))))
+#
+def test():
+    if sp(10) == '10405071317':
+        return 'Pass'
+    else:
+        return 'Fail'
 
-result_s = str(sp(1000))
-result_len = len(result_s)
-print(result_s)
-print(result_len)
+def main():
+    return sp(1000, 10)
 
-print(result_s[-10:])
-
-
-
-
-
-
-
-
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) >= 2 and sys.argv[1] == 'test':
+        print(test())
+    else:
+        print(main())
 
